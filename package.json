@@ -4,8 +4,9 @@
   "description": "E2E api API tests on Playwright",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write .",
     "test:e2e": "playwright test",
-    "test:api": "ts-node tests/api.test.ts"
+    "test:api": "ts-node src/tests/api.test.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.8.1",
     "playwright": "^1.48.2",
+    "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   },
