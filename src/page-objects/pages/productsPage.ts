@@ -1,34 +1,47 @@
 import { expect, Page, test } from '@playwright/test';
 import { productsPageSelectors } from '../../selectors/productsPageSelectors';
 import { ButtonElement, TextElement, CheckBoxElement } from '../elements';
-import {ProductItemElement} from "../components/productItemElement";
+import { ProductItemElement } from '../components/productItemElement';
 
 export class ProductsPage {
-  basketDropdown: ButtonElement;
-  basketCount: TextElement;
-  clearBasketButton: ButtonElement;
-  goToBasketButton: ButtonElement;
-  discountCheckbox: CheckBoxElement;
-  productItem: ProductItemElement;
+  private readonly page: Page;
 
   constructor(page: Page) {
-    this.basketDropdown = new ButtonElement('Basket Dropdown', page, {
+    this.page = page;
+  }
+
+  get basketDropdown(): ButtonElement {
+    return new ButtonElement('Basket Dropdown', this.page, {
       selector: productsPageSelectors.header.basketDropdown,
     });
-    this.basketCount = new TextElement('Basket Count', page, {
+  }
+
+  get basketCount(): TextElement {
+    return new TextElement('Basket Count', this.page, {
       selector: productsPageSelectors.header.basketCount,
     });
-    this.clearBasketButton = new ButtonElement('Clear Basket Button', page, {
+  }
+
+  get clearBasketButton(): ButtonElement {
+    return new ButtonElement('Clear Basket Button', this.page, {
       selector: productsPageSelectors.header.clearBasketButton,
     });
-    this.goToBasketButton = new ButtonElement('Go To Basket Button', page, {
+  }
+
+  get goToBasketButton(): ButtonElement {
+    return new ButtonElement('Go To Basket Button', this.page, {
       selector: productsPageSelectors.header.goToBasketButton,
     });
+  }
 
-    this.discountCheckbox = new CheckBoxElement('Discount Checkbox', page, {
+  get discountCheckbox(): CheckBoxElement {
+    return new CheckBoxElement('Discount Checkbox', this.page, {
       selector: productsPageSelectors.searchForm.discountCheckbox,
     });
-    this.productItem = new ProductItemElement('item', page);
+  }
+
+  get productItem(): ProductItemElement {
+    return new ProductItemElement('item', this.page);
   }
 
   async getBasketCount(): Promise<number> {
@@ -63,5 +76,4 @@ export class ProductsPage {
       expect(actualCount).toBe(expectedCount);
     });
   }
-
 }

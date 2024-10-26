@@ -44,6 +44,10 @@ export class BaseElement {
     return this.getElement(this.selector);
   }
 
+  async all(): Promise<Locator[]> {
+    return this.page.locator(this._selector).all();
+  }
+
   async getElementHandle(): Promise<ElementHandle<SVGElement | HTMLElement> | null> {
     return await this.element.elementHandle();
   }

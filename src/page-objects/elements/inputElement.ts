@@ -12,8 +12,6 @@ export class InputElement extends BaseElement {
 
   async type(value: string): Promise<void> {
     await test.step(`Ввод значения "${value}" в поле "${this.elementSignature}"`, async () => {
-      console.log('Element:', this.element); // Добавьте отладочное сообщение
-
       await this.element.click();
       await this.element.fill('');
       await this.element.type(value, { delay: 100 });
