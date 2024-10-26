@@ -1,20 +1,28 @@
 import { Page } from 'playwright';
-import { homePageSelectors } from '../selectors/homePageSelectors';
-import { ButtonElement } from './elements/button';
+import { homePageSelectors } from '../../selectors/homePageSelectors';
+import { ButtonElement } from '../elements';
 
 export class HomePage {
-  loginButton: ButtonElement;
-  registrationButton: ButtonElement;
-  logoButton: ButtonElement;
+  private readonly page: Page;
 
   constructor(page: Page) {
-    this.loginButton = new ButtonElement('Login Button', page, {
+    this.page = page;
+  }
+
+  get loginButton(): ButtonElement {
+    return new ButtonElement('Login Button', this.page, {
       selector: homePageSelectors.navLinks.login,
     });
-    this.registrationButton = new ButtonElement('Registration Button', page, {
+  }
+
+  get registrationButton(): ButtonElement {
+    return new ButtonElement('Registration Button', this.page, {
       selector: homePageSelectors.navLinks.registration,
     });
-    this.logoButton = new ButtonElement('Logo', page, {
+  }
+
+  get logoButton(): ButtonElement {
+    return new ButtonElement('Logo', this.page, {
       selector: homePageSelectors.logo,
     });
   }

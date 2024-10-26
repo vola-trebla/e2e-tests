@@ -1,12 +1,13 @@
 import { Page } from '@playwright/test';
-import { LoginPage } from '../page-objects/loginPage';
-import { HomePage } from '../page-objects/homePage';
+import { LoginPage } from '../page-objects/pages/loginPage';
+import { HomePage } from '../page-objects/pages/homePage';
+import { getEnvVar } from '../utils/env';
 
 export async function authorizeUser(page: Page) {
   const loginPage = new LoginPage(page);
   const homePage = new HomePage(page);
-  await page.goto('https://enotes.pointschool.ru'); // Переход на главную страницу
+  await page.goto(getEnvVar('BASE_URL'));
   await homePage.clickLogin();
   await loginPage.loginButton.shouldBeDisabled();
-  await loginPage.login('test', 'test'); // Логин с тестовыми данными
+  await loginPage.login(getEnvVar('USERNAME'), getEnvVar('PASSWORD'));
 }

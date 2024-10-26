@@ -28,30 +28,20 @@ export const productsPageSelectors = {
     itemContainer: '.note-list',
     item: '.note-item',
     itemDataProduct: (index: number) => `.note-item[data-product="${index}"]`,
-    itemPoster: (index: number) =>
-      `.note-item[data-product="${index}"] .product_poster`,
-    itemType: (index: number) =>
-      `.note-item[data-product="${index}"] .product_type`,
-    itemName: (index: number) =>
-      `.note-item[data-product="${index}"] .product_name`,
-    itemPrice: (index: number) =>
-      `.note-item[data-product="${index}"] .product_price`,
-    itemCountInput: (index: number) =>
-      `.note-item[data-product="${index}"] input[name="product-enter-count"]`,
-    itemStock: (index: number) =>
-      `.note-item[data-product="${index}"] .product_count`,
-    itemBuyButton: (index: number) =>
-      `.note-item[data-product="${index}"] .actionBuyProduct`,
-    itemDiscount: (index: number) =>
-      `.note-item[data-product="${index}"] .product_discount`,
+    itemPoster: (index: number) => `.note-item[data-product="${index}"] .product_poster`,
+    itemType: (index: number) => `.note-item[data-product="${index}"] .product_type`,
+    itemName: `.product_name`,
+    itemPrice: `.product_price`,
+    itemCountInput: `input[name="product-enter-count"]`,
+    itemStock: '.product_count',
+    itemBuyButton: `.actionBuyProduct`,
     emptyMessage: '#noteListEmptyTitle',
   },
 
   pagination: {
     container: 'nav[aria-label="Page navigation"]',
     pageItems: '.pagination .page-item',
-    pageLink: (pageNumber: number) =>
-      `.pagination .page-item a[data-page-number="${pageNumber}"]`,
+    pageLink: (pageNumber: number) => `.pagination .page-item a[data-page-number="${pageNumber}"]`,
     activePage: '.pagination .page-item.active a',
   },
 
