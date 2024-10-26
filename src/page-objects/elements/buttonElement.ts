@@ -1,15 +1,11 @@
 import { expect, Page, test } from '@playwright/test';
-import { BaseElement } from './base-element';
+import { BaseElement } from './baseElement';
 
 /**
  * Элемент кнопки
  */
 export class ButtonElement extends BaseElement {
-  constructor(
-    signature: string,
-    page: Page,
-    { selector }: { selector: string },
-  ) {
+  constructor(signature: string, page: Page, { selector }: { selector: string }) {
     super({ signature, page, selector });
   }
 

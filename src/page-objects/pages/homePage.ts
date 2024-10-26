@@ -1,6 +1,6 @@
 import { Page } from 'playwright';
-import { homePageSelectors } from '../selectors/homePageSelectors';
-import { ButtonElement } from './elements/button';
+import { homePageSelectors } from '../../selectors/homePageSelectors';
+import { ButtonElement } from '../elements/buttonElement';
 
 export class HomePage {
   loginButton: ButtonElement;

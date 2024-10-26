@@ -9,19 +9,23 @@ export class BaseElement {
   private readonly _page: Page;
   private readonly _signature: string;
   private readonly _selector: string;
+  private readonly _parent?: Locator;
 
   constructor({
     signature,
     page,
     selector,
+    parent,
   }: {
     signature: string;
     page: Page;
     selector: string;
+    parent?: Locator; // Добавлено поле родителя
   }) {
     this._page = page;
     this._signature = signature;
     this._selector = selector;
+    this._parent = parent; // Инициализация родителя
   }
 
   get page(): Page {
@@ -33,16 +37,14 @@ export class BaseElement {
   }
 
   private getElement(selector: string): Locator {
-    return this.page.locator(selector);
+    return this._parent ? this._parent.locator(selector) : this.page.locator(selector);
   }
 
   get element(): Locator {
     return this.getElement(this.selector);
   }
 
-  async getElementHandle(): Promise<ElementHandle<
-    SVGElement | HTMLElement
-  > | null> {
+  async getElementHandle(): Promise<ElementHandle<SVGElement | HTMLElement> | null> {
     return await this.element.elementHandle();
   }
 
@@ -77,7 +79,7 @@ export class BaseElement {
 
   async type(text: string): Promise<void> {
     await test.step(`Ввод текста "${text}" в ${this.typeOf} с именем "${this.elementSignature}"`, async () => {
-      await this.element.fill(text); // Или используем type(), если нужно
+      await this.element.fill(text);
     });
   }
 
@@ -109,5 +111,17 @@ export class BaseElement {
     await test.step(`Ожидание скрытия ${this.typeOf} с именем "${this.elementSignature}"`, async () => {
       await this.element.waitFor({ state: 'hidden', timeout });
     });
+  }
+
+  async first(): Promise<Locator> {
+    return this.element.first();
+  }
+
+  async last(): Promise<Locator> {
+    return this.element.last();
+  }
+
+  async nth(index: number): Promise<Locator> {
+    return this.element.nth(index);
   }
 }

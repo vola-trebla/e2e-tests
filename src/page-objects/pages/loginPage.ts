@@ -1,18 +1,18 @@
 import { Page } from 'playwright';
-import { loginPageSelectors } from '../selectors/loginPageSelectors';
-import { ButtonElement } from './elements/button';
-import { Input } from './elements/input';
+import { loginPageSelectors } from '../../selectors/loginPageSelectors';
+import { ButtonElement } from '../elements/buttonElement';
+import { InputElement } from '../elements/inputElement';
 
 export class LoginPage {
-  usernameInput: Input;
-  passwordInput: Input;
+  usernameInput: InputElement;
+  passwordInput: InputElement;
   loginButton: ButtonElement;
 
   constructor(page: Page) {
-    this.usernameInput = new Input('Username Input', page, {
+    this.usernameInput = new InputElement('Username InputElement', page, {
       selector: loginPageSelectors.usernameInput,
     });
-    this.passwordInput = new Input('Password Input', page, {
+    this.passwordInput = new InputElement('Password InputElement', page, {
       selector: loginPageSelectors.passwordInput,
     });
     this.loginButton = new ButtonElement('Login Button', page, {

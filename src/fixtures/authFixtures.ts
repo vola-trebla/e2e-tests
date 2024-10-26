@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
-import { LoginPage } from '../page-objects/loginPage';
-import { HomePage } from '../page-objects/homePage';
+import { LoginPage } from '../page-objects/pages/loginPage';
+import { HomePage } from '../page-objects/pages/homePage';
 
 export async function authorizeUser(page: Page) {
   const loginPage = new LoginPage(page);
