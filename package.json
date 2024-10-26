@@ -1,0 +1,23 @@
+{
+  "name": "e2e-tests",
+  "version": "1.0.0",
+  "description": "E2E api API tests on Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:api": "ts-node tests/api.test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.8.1",
+    "playwright": "^1.48.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}
