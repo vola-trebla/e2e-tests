@@ -1,25 +1,29 @@
-import { Page } from '@playwright/test';
-import { InputField } from './components/inputField';
-import { Button } from './components/button';
+import { Page } from 'playwright';
+import { loginPageSelectors } from '../selectors/loginPageSelectors';
+import { ButtonElement } from './elements/button';
+import { Input } from './elements/input';
 
 export class LoginPage {
-  private usernameInput: InputField;
-  private passwordInput: InputField;
-  private submitButton: Button;
+  usernameInput: Input;
+  passwordInput: Input;
+  loginButton: ButtonElement;
 
-  constructor(private page: Page) {
-    this.usernameInput = new InputField(page, 'input[name="username"]');
-    this.passwordInput = new InputField(page, 'input[name="password"]');
-    this.submitButton = new Button(page, 'button[type="submit"]');
+  constructor(page: Page) {
+    this.usernameInput = new Input('Username Input', page, {
+      selector: loginPageSelectors.usernameInput,
+    });
+    this.passwordInput = new Input('Password Input', page, {
+      selector: loginPageSelectors.passwordInput,
+    });
+    this.loginButton = new ButtonElement('Login Button', page, {
+      selector: loginPageSelectors.loginButton,
+    });
   }
 
-  async goto() {
-    await this.page.goto('https://enotes.pointschool.ru');
-  }
-
-  async login(username: string, password: string) {
+  async login(username: string, password: string): Promise<void> {
     await this.usernameInput.type(username);
     await this.passwordInput.type(password);
-    await this.submitButton.click();
+    await this.loginButton.shouldBeEnabled();
+    await this.loginButton.click();
   }
 }
